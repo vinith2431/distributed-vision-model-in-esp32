@@ -19,9 +19,7 @@ data/
 
 # === Generated outputs ===
 *.zip
-snapshot_frame_*.png
-dashboard_*.png
-feature_maps_*.png
+
 
 # === OS / IDE ===
 .DS_Store
