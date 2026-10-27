@@ -1,0 +1,56 @@
+Nine-Model Comparison Summary
+================================
+
+SMALL
+  Parameters: 31,202
+  Epochs trained: 14 (early-stopped at 14)
+  Best val_loss: 0.0523
+  Test accuracy: 0.9787
+
+WIDE
+  Parameters: 139,218
+  Epochs trained: 11 (early-stopped at 11)
+  Best val_loss: 0.0489
+  Test accuracy: 0.9810
+
+BASELINE
+  Parameters: 31,762
+  Epochs trained: 16 (early-stopped at 16)
+  Best val_loss: 0.0539
+  Test accuracy: 0.9848
+
+DEEPER
+  Parameters: 29,682
+  Epochs trained: 9 (early-stopped at 9)
+  Best val_loss: 0.0446
+  Test accuracy: 0.9834
+
+RESIDUAL
+  Parameters: 53,394
+  Epochs trained: 13 (early-stopped at 13)
+  Best val_loss: 0.0534
+  Test accuracy: 0.9836
+
+SE
+  Parameters: 46,970
+  Epochs trained: 11 (early-stopped at 11)
+  Best val_loss: 0.0380
+  Test accuracy: 0.9885
+
+MBCONV
+  Parameters: 151,122
+  Epochs trained: 17 (early-stopped at 17)
+  Best val_loss: 0.0271
+  Test accuracy: 0.9907
+
+CBAM
+  Parameters: 39,807
+  Epochs trained: 10 (early-stopped at 10)
+  Best val_loss: 0.0448
+  Test accuracy: 0.9829
+
+DENSE
+  Parameters: 148,658
+  Epochs trained: 10 (early-stopped at 10)
+  Best val_loss: 0.0347
+  Test accuracy: 0.9888

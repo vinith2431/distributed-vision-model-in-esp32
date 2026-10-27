@@ -1,0 +1,79 @@
+
+#include <Arduino.h>
+#include "driver/spi_slave.h"
+
+static constexpr size_t FRAME_SIZE = 128;
+
+// Node 1 <-> Node 2 SPI link
+static constexpr int PIN_SCLK = 18;
+static constexpr int PIN_MOSI = 23;
+static constexpr int PIN_MISO = 19;
+static constexpr int PIN_CS   = 5;
+
+static constexpr spi_host_device_t SPI_HOST = SPI3_HOST;
+
+alignas(4) uint8_t rxFrame[FRAME_SIZE];
+alignas(4) uint8_t txFrame[FRAME_SIZE];
+
+void setup() {
+  Serial.begin(115200);
+  delay(1000);
+
+  spi_bus_config_t bus = {};
+  bus.sclk_io_num = PIN_SCLK;
+  bus.mosi_io_num = PIN_MOSI;
+  bus.miso_io_num = PIN_MISO;
+  bus.quadwp_io_num = -1;
+  bus.quadhd_io_num = -1;
+  bus.max_transfer_sz = FRAME_SIZE;
+
+  spi_slave_interface_config_t dev = {};
+  dev.spics_io_num = PIN_CS;
+  dev.mode = 0;
+  dev.queue_size = 1;
+
+  esp_err_t err = spi_slave_initialize(
+      SPI_HOST, &bus, &dev, SPI_DMA_CH_AUTO);
+
+  if (err != ESP_OK) {
+    Serial.printf("NODE2_SPI_INIT_FAIL: %d\n", (int)err);
+    while (true) delay(1000);
+  }
+
+  Serial.println("NODE2_SPI_DIAG_READY");
+}
+
+void loop() {
+  memset(rxFrame, 0, sizeof(rxFrame));
+  memset(txFrame, 0, sizeof(txFrame));
+
+  // Constant reply for isolating the Node 1 <-> Node 2 link.
+  const char reply[] = "NODE2_SPI_OK";
+  memcpy(txFrame, reply, sizeof(reply));
+
+  spi_slave_transaction_t transaction = {};
+  transaction.length = FRAME_SIZE * 8;
+  transaction.tx_buffer = txFrame;
+  transaction.rx_buffer = rxFrame;
+
+  esp_err_t err = spi_slave_transmit(
+      SPI_HOST, &transaction, portMAX_DELAY);
+
+  if (err != ESP_OK) {
+    Serial.printf("NODE2_SPI_TRANSACTION_FAIL: %d\n", (int)err);
+    return;
+  }
+
+  size_t n = 0;
+  while (n < FRAME_SIZE && rxFrame[n] != 0) n++;
+
+  if (n > 0) {
+    Serial.print("NODE2_SPI_RX: ");
+    for (size_t i = 0; i < n; i++) {
+      Serial.print((char)rxFrame[i]);
+    }
+    Serial.println();
+  } else {
+    Serial.println("NODE2_SPI_RX: EMPTY");
+  }
+}

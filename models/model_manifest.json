@@ -1,0 +1,69 @@
+{
+  "project": "ESP32 Distributed Vision Inference",
+  "verification_status": "VERIFIED_COMPATIBLE",
+  "pipeline": {
+    "stage_1": {
+      "node": "Node 1",
+      "model_file": "node1_int8.tflite",
+      "file_size_bytes": 9720,
+      "input": {
+        "name": "serving_default_rgb_image:0",
+        "shape": [1, 96, 96, 3],
+        "dtype": "int8",
+        "bytes": 27648,
+        "scale": 0.003921568859368563,
+        "zero_point": -128
+      },
+      "output": {
+        "name": "StatefulPartitionedCall_1:0",
+        "shape": [1, 12, 12, 32],
+        "dtype": "int8",
+        "bytes": 4608,
+        "scale": 0.03307977318763733,
+        "zero_point": -128
+      }
+    },
+    "stage_2": {
+      "node": "Node 2",
+      "model_file": "node2_int8.tflite",
+      "file_size_bytes": 25472,
+      "input": {
+        "name": "serving_default_node2_input:0",
+        "shape": [1, 12, 12, 32],
+        "dtype": "int8",
+        "bytes": 4608,
+        "scale": 0.03308030962944031,
+        "zero_point": -128
+      },
+      "output": {
+        "name": "StatefulPartitionedCall_1:0",
+        "shape": [1, 12, 12, 48],
+        "dtype": "int8",
+        "bytes": 6912,
+        "scale": 0.05577724814414978,
+        "zero_point": 9
+      }
+    },
+    "stage_3": {
+      "node": "Node 3",
+      "model_file": "node3_int8.tflite",
+      "file_size_bytes": 24368,
+      "input": {
+        "name": "serving_default_node3_input:0",
+        "shape": [1, 12, 12, 48],
+        "dtype": "int8",
+        "bytes": 6912,
+        "scale": 0.05577358976006508,
+        "zero_point": 9
+      },
+      "output": {
+        "name": "StatefulPartitionedCall_1:0",
+        "shape": [1, 2],
+        "dtype": "int8",
+        "bytes": 2,
+        "scale": 0.00390625,
+        "zero_point": -128
+      }
+    }
+  }
+}

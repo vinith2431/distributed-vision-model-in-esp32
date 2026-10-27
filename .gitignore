@@ -1,0 +1,34 @@
+# === Build artifacts (ESP-IDF) ===
+**/build/
+**/managed_components/
+**/dependencies.lock
+sdkconfig.old
+
+# === Python ===
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+
+# === Training data (too large for git) ===
+actual training data/
+newdata/
+data/
+
+# === Generated outputs ===
+*.zip
+snapshot_frame_*.png
+dashboard_*.png
+feature_maps_*.png
+
+# === OS / IDE ===
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# === Misc ===
+*.npy
