@@ -449,3 +449,5 @@ py tools/web_demo.py
 - **Project**: Partitioned Distributed Computer Vision on ESP32 Microcontrollers
 - **Environment**: ESP-IDF 5.5 / Arduino Core for ESP32 / Google LiteRT / TensorFlow
 - **Dataset**: Face Mask Dataset (73,074 images: 51,151 train, 14,614 val, 7,309 test)
+#   d i s t r i b u t e d - v i s i o n - m o d e l - i n - e s p 3 2  
+ 
