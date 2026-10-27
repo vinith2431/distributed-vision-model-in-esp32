@@ -1,0 +1,45 @@
+{
+  "node1": {
+    "output_shape": [
+      1,
+      12,
+      12,
+      32
+    ],
+    "output_bytes": 4608,
+    "channels": 32,
+    "min_val": -128,
+    "max_val": 0,
+    "mean_val": -119.84852430555556
+  },
+  "node2": {
+    "output_shape": [
+      1,
+      12,
+      12,
+      48
+    ],
+    "output_bytes": 6912,
+    "channels": 48,
+    "min_val": -49,
+    "max_val": 79,
+    "mean_val": 9.166377314814815
+  },
+  "node3": {
+    "output_shape": [
+      1,
+      2
+    ],
+    "raw_scores": [
+      20,
+      -20
+    ],
+    "probabilities": [
+      0.578125,
+      0.421875
+    ],
+    "predicted_class_idx": 0,
+    "predicted_class_name": "With Mask",
+    "confidence_percent": 57.81
+  }
+}

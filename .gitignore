@@ -12,10 +12,7 @@ __pycache__/
 .venv/
 venv/
 
-# === Training data (too large for git) ===
-actual training data/
-newdata/
-data/
+
 
 # === Generated outputs ===
 *.zip
